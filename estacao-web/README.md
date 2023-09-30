@@ -20,4 +20,4 @@ Aplicação utilizada para exibir os dados coletados com o Arduino através da W
 
 </br>
 
-*[Voltar a página inicial do projeto](../README.md)*
+*[Voltar a página inicial do projeto](../)*

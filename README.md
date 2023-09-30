@@ -8,11 +8,11 @@ O projeto é separado em duas diferentes aplicações:
 
 ## [🌤️ Estação Arduino ](./estacao-arduino/)
 
-Aplicação utilizada para exibir os dados coletados com o Arduino através da Web com o framework JavaServer Faces.
+Aplicação utilizada para ler a temperatura, humidade e precipitação com o Arduino e salvar essas medidas no banco de dados.
 
 ## [🌦️ Estação Web ](./estacao-web/)
 
-Aplicação utilizada para ler a temperatura, humidade e precipitação com o Arduino e salvar essas medidas no banco de dados.
+Aplicação utilizada para exibir os dados coletados com o Arduino através da Web com o framework JavaServer Faces.
 
 ## 🔧 Desenvolvido por:
 

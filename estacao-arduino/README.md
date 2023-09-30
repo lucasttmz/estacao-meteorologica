@@ -25,4 +25,4 @@ Aplicação utilizada para ler a temperatura, humidade e precipitação com o Ar
 
 </br>
 
-*[Voltar a página inicial do projeto](../README.md)*
+*[Voltar a página inicial do projeto](../)*
