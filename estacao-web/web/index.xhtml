@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Estação Meteorológica</title>
+        
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", () => {
+                const url = "ws://"+window.location.host+"/estacao-web/ws"
+                const socket = new WebSocket(url);
+                const suportado = "WebSocket" in window;
+           
+                if (suportado) {
+                    socket.onopen = async () => console.log("WebSocket conectado!");
+                    socket.onmessage = async (event) => {
+                        console.log(event.data);
+                        
+                    };
+                    socket.onclose = async () => console.log("WebSocket desconectado...");
+                } else {
+                    alert("WebSocket não é suportado pelo Browser!");
+                }
+            });
+        </script>
+    </h:head>
+
+    <h:body>
+        Oi
+    </h:body>
+</html>
