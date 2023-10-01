@@ -109,11 +109,11 @@ const clima = document.querySelector('.clima')
 const checkIfIsRaining = () => {
   const rainMeter = 400
   if(rainMeter >= 500) {
-    rainingSvg.src = './assets/svg/sun.svg'
+    rainingSvg.src = imagemChuva;
     clima.innerHTML =  'Chuva leve'
   }
   
-  rainingSvg.src = './assets/svg/rain.svg'
+  rainingSvg.src = imagemSol;
 }
 
 checkIfIsRaining()

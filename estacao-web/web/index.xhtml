@@ -1,68 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clima</title>
-  <!--Fonts-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" >
 
-  <!--Graficos-->
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <link rel="stylesheet" href="./styles/styles.css"/>
-  <link rel="stylesheet" href="./styles/dark_style.css">
-  <link rel="stylesheet" href="./styles/rain.css">
-</head>
-<body data-theme='light'>
-  <header>
-    <button id="backgroundChange"><img src="./assets/svg/lamp-svgrepo-com.svg" alt="lampada"></button>
-  </header>
-  <main class="container">
-    <div class="graficos">
-      <div id="graficoTemp"></div>
-      <div id="graficoHumidade"></div>
-    </div>
-    <div class="temps">
-      <div class="tempAtual">
-        <div>
-          <p>Local</p>
+  <h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Estação Meteorológica</title>
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700" rel="stylesheet"/>
 
-          <p>°C</p>
+    <!--Graficos-->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:outputStylesheet library="css" name="chuva.css"/>
+    <h:outputStylesheet library="css" name="darkstyle.css"/>
+    
+    <!--Resources-->
+    <h:outputScript>
+      const imagemSol = "${resource['assets/sun.svg']}";  
+      const imagemChuva = "${resource['assets/rain.svg']}";  
+    </h:outputScript>
+  </h:head>
+  <h:body a:data-theme='light'>
+    <header>
+      <h:commandLink id="backgroundChange">
+        <h:graphicImage library="assets" name="lamp-svgrepo-com.svg" alt="lampada"/>
+      </h:commandLink>
+    </header>
+    <main class="container">
+      <div class="graficos">
+        <div id="graficoTemp"></div>
+        <div id="graficoHumidade"></div>
+      </div>
+      <div class="temps">
+        <div class="tempAtual">
+          <div>
+            <p>Local</p>
+
+            <p>°C</p>
+          </div>
+
+          <h1>
+            #
+          </h1>
+
+          <div>
+            <p class="chuva">Humidade</p>
+
+            <p class="chuva">#%</p>
+          </div>
         </div>
+        <div class="tempGoogle">
+          <div class="local">
+            <p>Clima</p>
 
-        <h1>
-          22
-        </h1>
+            <h:graphicImage styleClass="raining" library="assets" name="sun.svg" alt="sol"/>
+          </div>
 
-        <div>
-          <p class="chuva">Humidade</p>
+          <h1 class="clima">
+            Dia ensolarado
+          </h1>
 
-          <p class="chuva">50%</p>
+          <p>
+            Sensor
+          </p>
         </div>
       </div>
-      <div class="tempGoogle">
-        <div class="local">
-          <p>Clima</p>
+    </main>
 
-          <img class="raining" src="./assets/svg/sun.svg"></img>
-        </div>
+    <div class="rain front-row"></div>
 
-        <h1 class="clima">
-          Dia ensolarado
-        </h1>
-
-        <p>
-          Sensor
-        </p>
-      </div>
-    </div>
-  </main>
-
-  <div class="rain front-row"></div>
-
-  <script type="text/javascript" src="./scripts/main.js"></script>
-  <script type="text/javascript" src="./scripts/rain.js"></script>
-</body>
+    <h:outputScript library="js" name="main.js" />
+    <h:outputScript library="js" name="chuva.js" />
+  </h:body>
 </html>
