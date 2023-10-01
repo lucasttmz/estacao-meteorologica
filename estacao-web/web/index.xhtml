@@ -1,32 +1,68 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clima</title>
+  <!--Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <h:head>
-        <title>Estação Meteorológica</title>
-        
-        <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", () => {
-                const url = "ws://"+window.location.host+"/estacao-web/ws"
-                const socket = new WebSocket(url);
-                const suportado = "WebSocket" in window;
-           
-                if (suportado) {
-                    socket.onopen = async () => console.log("WebSocket conectado!");
-                    socket.onmessage = async (event) => {
-                        console.log(event.data);
-                        
-                    };
-                    socket.onclose = async () => console.log("WebSocket desconectado...");
-                } else {
-                    alert("WebSocket não é suportado pelo Browser!");
-                }
-            });
-        </script>
-    </h:head>
+  <!--Graficos-->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <link rel="stylesheet" href="./styles/styles.css"/>
+  <link rel="stylesheet" href="./styles/dark_style.css">
+  <link rel="stylesheet" href="./styles/rain.css">
+</head>
+<body data-theme='light'>
+  <header>
+    <button id="backgroundChange"><img src="./assets/svg/lamp-svgrepo-com.svg" alt="lampada"></button>
+  </header>
+  <main class="container">
+    <div class="graficos">
+      <div id="graficoTemp"></div>
+      <div id="graficoHumidade"></div>
+    </div>
+    <div class="temps">
+      <div class="tempAtual">
+        <div>
+          <p>Local</p>
 
-    <h:body>
-        Oi
-    </h:body>
+          <p>°C</p>
+        </div>
+
+        <h1>
+          22
+        </h1>
+
+        <div>
+          <p class="chuva">Humidade</p>
+
+          <p class="chuva">50%</p>
+        </div>
+      </div>
+      <div class="tempGoogle">
+        <div class="local">
+          <p>Clima</p>
+
+          <img class="raining" src="./assets/svg/sun.svg"></img>
+        </div>
+
+        <h1 class="clima">
+          Dia ensolarado
+        </h1>
+
+        <p>
+          Sensor
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <div class="rain front-row"></div>
+
+  <script type="text/javascript" src="./scripts/main.js"></script>
+  <script type="text/javascript" src="./scripts/rain.js"></script>
+</body>
 </html>
