@@ -1,0 +1,11 @@
+body[data-theme='dark']{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    max-width: 100vw;
+    background: var(--darkBackgorund);
+    font-size: 1.6rem;
+    align-items: start;
+    
+    overflow-x: hidden;
+}
