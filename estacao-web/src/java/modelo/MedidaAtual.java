@@ -3,20 +3,22 @@ package modelo;
 import java.time.LocalDateTime;
 
 /**
+ * Representa a medida mais recente que está armazenada no banco de dados.
+ * 
  * FAZER O MAPEAMENTO DO HIBERNATE (NUNO)
  */
 
-public class Medida {
+public class MedidaAtual {
     private LocalDateTime data;
     private Double temperatura;
     private Double humidade;
     private Integer precipitacao;
 
-    public Medida() {
+    public MedidaAtual() {
         
     }
     
-    public Medida(LocalDateTime data, Double temperatura, Double humidade, Integer precipitacao) {
+    public MedidaAtual(LocalDateTime data, Double temperatura, Double humidade, Integer precipitacao) {
         this.data = data;
         this.temperatura = temperatura;
         this.humidade = humidade;

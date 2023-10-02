@@ -1,4 +1,5 @@
 target/
+*.jar
 
 ### IntelliJ IDEA ###
 .idea

@@ -6,8 +6,14 @@ import javax.websocket.OnClose;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import modelo.Medida;
+import modelo.MedidaAtual;
 
+/**
+ * Configuração do WebSocket.
+ *
+ * Realiza o handshake cliente-servidor armazenando as sessões conectadas. 
+ * É responsável por enviar as medidas para o front-end.
+ */
 @ServerEndpoint(value = "/ws")
 public class WebSocket {
 
@@ -23,13 +29,13 @@ public class WebSocket {
         sessoesAtuais.remove(sessao);
     }
 
-    public static void enviarMedida(Medida medida) {
+    public static void enviarMedida(MedidaAtual medida) {
         for (Session sessao : sessoesAtuais) {
             sessao.getAsyncRemote().sendText(formatarMedida(medida));
         }
     }
 
-    private static String formatarMedida(Medida medida) {
+    private static String formatarMedida(MedidaAtual medida) {
         return new StringBuilder() 
                 .append("{\"hora\": \"")
                 .append(medida.getData().toLocalTime().toString())

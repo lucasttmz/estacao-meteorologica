@@ -55,13 +55,13 @@
           </div>
 
           <h1>
-            <span id="temperatura">#</span> °C
+            <span id="temperatura"></span> °C
           </h1>
 
           <div>
             <p class="chuva">Humidade</p>
 
-            <p class="chuva"><span id="humidade">#</span>%</p>
+            <p class="chuva"><span id="humidade"></span> %</p>
           </div>
         </div>
         <div class="tempGoogle">
@@ -72,17 +72,21 @@
           </div>
 
           <h1 class="clima">
-            Dia ensolarado
           </h1>
           <div>
             <p> Sensor </p>
-            <p id="precipitacao">123</p>
+            <p id="precipitacao"></p>
           </div>
         </div>
       </div>
     </main>
 
     <div class="rain front-row"></div>
+
+    <!-- A chuva estava fazendo com que fosse impossivel clicar -->
+    <h:form style="z-index: 1"> 
+      <h:commandLink value="Ver o histórico das medidas" action="#{graficoBean.historicoMedidas()}"/>
+    </h:form>
 
     <h:outputScript library="js" name="main.js" />
     <h:outputScript library="js" name="chuva.js" />
