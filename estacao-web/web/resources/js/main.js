@@ -1,122 +1,102 @@
-const data = [0]
-const categories = ['']
+const chuvaForte = 100;
+const chuvaLeve = 500;
+const diaNublado = 700;
+const diaEnsolarado = 1000;
 
-const chuvaLeve = 500
-const chuvaFort = 100
-const diaNublado = 600
-const diaEnsolarado = 1000
+let graficoTemp;
+let graficoHumi;
 
-var options = {
-  series: [{
-  name: 'temp',
-  data: [...data]
-}],
-  chart: {
-  id: 'realtime',
-  height: 350,
-  type: 'line',
-  animations: {
-    enabled: true,
-    easing: 'linear',
-    dynamicAnimation: {
-      speed: 1000
-    }
-  },
-  toolbar: {
-    show: false
-  },
-  zoom: {
-    enabled: true
-  }
-},
-dataLabels: {
-  enabled: false
-},
-stroke: {
-  curve: 'smooth'
-},
-title: {
-  text: 'Gráfico Temperatura',
-  align: 'left'
-},
-markers: {
-  size: 0
-},
-xaxis: {
-  range: 10,
-  categories: [...categories]
-},
-yaxis: {
-  max: 100
-},
-legend: {
-  show: false
-},
+const spanTemp = document.getElementById("temperatura");
+const spanHumi = document.getElementById("humidade");
+const spanChuva = document.getElementById("precipitacao");
+
+const reajustarGraficos = () => {
+  graficoTemp.chart.data.datasets[0].data.shift();
+  graficoTemp.chart.data.labels.shift();
+  graficoHumi.chart.data.datasets[0].data.shift();
+  graficoHumi.chart.data.labels.shift();
 };
 
-const chart = new ApexCharts(document.querySelector("#graficoTemp"), options);
-chart.render();
+const adicionarMedidas = (medidas) => {
+  graficoTemp.chart.data.labels.push(medidas.hora);
+  graficoTemp.chart.data.datasets[0].data.push(medidas.temperatura);
+  graficoHumi.chart.data.labels.push(medidas.hora);
+  graficoHumi.chart.data.datasets[0].data.push(medidas.humidade);
 
-function getNewSeries(min, max) {
-  const date = new Intl.DateTimeFormat('pt-br', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: "2-digit",
-  }).format(new Date())
+  graficoTemp.chart.update();
+  spanTemp.innerHTML = parseFloat(medidas.temperatura).toFixed(1);
+  graficoHumi.chart.update();
+  spanHumi.innerHTML = parseFloat(medidas.humidade).toFixed(1);
+  
+  checarSeEstaChuvendo(medidas.precipitacao);
+};
 
-  categories.push(date)
-  const temp = Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min)) + min)
-  data.push(temp)
-}
+const conectarWebSocket = () => {
+  const url = "ws://" + window.location.host + "/estacao-web/ws";
+  const socket = new WebSocket(url);
+  const suportado = "WebSocket" in window;
+  let qtdDados = 0;
 
-
-function changeDataChart() {
-  getNewSeries(10, 90)
-
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  setInterval(() => {
-    changeDataChart()
-    console.log('aqui')
-    chart.updateSeries([{
-      data: [...data]
-    }])
-    chart.updateOptions({
-      xaxis: {
-        categories: [...categories]
+  if (suportado) {
+    socket.onopen = async () => console.log("WebSocket conectado!");
+    socket.onmessage = async (event) => {
+      let medidas = JSON.parse(event.data);
+      graficoTemp = PF("gtemp");
+      graficoHumi = PF("ghumi");
+      if (qtdDados === 5) {
+        reajustarGraficos();
+      } else {
+        qtdDados++;
       }
-    })
-  }, 1000)
-})
-
-
-const buttondarkMode = document.querySelector('#backgroundChange');
-
-buttondarkMode.addEventListener('click', ()=>{
-  let currentTheme = document.body.getAttribute("data-theme");
-  let targetTheme = "light";
-
-  if (currentTheme === "light") {
-        targetTheme = "dark";
+      adicionarMedidas(medidas);
+    };
+    socket.onclose = async () => console.log("WebSocket desconectado...");
+  } else {
+    alert("WebSocket não é suportado pelo seu navegador!");
   }
-  document.body.setAttribute('data-theme', targetTheme)
-}) 
+};
 
-const rainingSvg = document.querySelector('.raining')
-const clima = document.querySelector('.clima')
+const configurarDarkMode = () => {
+  const btnDarkMode = document.querySelector('#frmTema-backgroundChange');
+  btnDarkMode.addEventListener('click', () => {
+    let temaAtual = document.body.getAttribute("data-theme");
+    let novoTema = "light";
 
-const checkIfIsRaining = () => {
-  const rainMeter = 400
-  if(rainMeter >= 500) {
-    rainingSvg.src = imagemChuva;
-    clima.innerHTML =  'Chuva leve'
+    if (temaAtual === "light") {
+      novoTema = "dark";
+    }
+    document.body.setAttribute('data-theme', novoTema);
+  });
+};
+
+const climaSvg = document.querySelector('.climaImg');
+const clima = document.querySelector('.clima');
+
+const checarSeEstaChuvendo = (precipitacao) => {
+  if (precipitacao >= 1000) {
+    climaSvg.src = imagemSol;
+    clima.innerHTML = "Dia Ensolarado";
+    stopItRain();
+  } 
+  else if (precipitacao >= 700) {
+    climaSvg.src = imagemSol;
+    clima.innerHTML = "Dia Nublado";
+    stopItRain();
   }
-  
-  rainingSvg.src = imagemSol;
-}
+  else if (precipitacao >= 500) {
+    climaSvg.src = imagemChuva;
+    clima.innerHTML = "Chuva Leve";
+    makeItRain();
+  }
+  else {
+    climaSvg.src = imagemChuva;
+    clima.innerHTML = "Chuva Forte";
+    makeItRain();
+  }
+  spanChuva.innerHTML = precipitacao;
+};
 
-checkIfIsRaining()
-
-
-  
+document.addEventListener("DOMContentLoaded", () => {
+  configurarDarkMode();
+  conectarWebSocket();
+});

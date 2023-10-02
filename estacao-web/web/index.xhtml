@@ -10,66 +10,74 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Estação Meteorológica</title>
+
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
 
     <!--Graficos-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <h:outputStylesheet library="css" name="styles.css"/>
     <h:outputStylesheet library="css" name="chuva.css"/>
     <h:outputStylesheet library="css" name="darkstyle.css"/>
-    
+
     <!--Resources-->
     <h:outputScript>
       const imagemSol = "${resource['assets/sun.svg']}";  
-      const imagemChuva = "${resource['assets/rain.svg']}";  
+      const imagemChuva = "${resource['assets/rain.svg']}"; 
     </h:outputScript>
   </h:head>
   <h:body a:data-theme='light'>
     <header>
-      <h:commandLink id="backgroundChange">
-        <h:graphicImage library="assets" name="lamp-svgrepo-com.svg" alt="lampada"/>
-      </h:commandLink>
+      <h:form id="frmTema">
+        <h:commandLink id="backgroundChange">
+          <h:graphicImage library="assets" name="lamp-svgrepo-com.svg" alt="lampada"/>
+          <f:ajax execute="@form" />
+        </h:commandLink>
+      </h:form>
     </header>
     <main class="container">
       <div class="graficos">
-        <div id="graficoTemp"></div>
-        <div id="graficoHumidade"></div>
+        <div id="graficoTemp">
+          <p:lineChart model="#{graficoBean.graficoTemperatura}" widgetVar="gtemp" style="width: 100%; height: 250px"/>
+        </div>
+        <div id="graficoHumidade">
+          <p:lineChart model="#{graficoBean.graficoHumidade}" widgetVar="ghumi" style="width: 100%; height: 250px"/>
+        </div>
       </div>
       <div class="temps">
         <div class="tempAtual">
           <div>
-            <p>Local</p>
+            <p>Temperatura</p>
 
-            <p>°C</p>
+            <h:graphicImage library="assets" name="temperatura.svg" alt="termometro"/>
           </div>
 
           <h1>
-            #
+            <span id="temperatura">#</span> °C
           </h1>
 
           <div>
             <p class="chuva">Humidade</p>
 
-            <p class="chuva">#%</p>
+            <p class="chuva"><span id="humidade">#</span>%</p>
           </div>
         </div>
         <div class="tempGoogle">
           <div class="local">
             <p>Clima</p>
 
-            <h:graphicImage styleClass="raining" library="assets" name="sun.svg" alt="sol"/>
+            <h:graphicImage styleClass="climaImg" library="assets" name="sun.svg" alt="sol"/>
           </div>
 
           <h1 class="clima">
             Dia ensolarado
           </h1>
-
-          <p>
-            Sensor
-          </p>
+          <div>
+            <p> Sensor </p>
+            <p id="precipitacao">123</p>
+          </div>
         </div>
       </div>
     </main>

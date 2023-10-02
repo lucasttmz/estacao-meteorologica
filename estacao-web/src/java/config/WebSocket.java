@@ -15,13 +15,11 @@ public class WebSocket {
 
     @OnOpen
     public void onOpen(Session sessao) {
-        System.out.println("Cliente " + sessao.getId() + " se conectou...");
         sessoesAtuais.add(sessao);
     }
 
     @OnClose
     public void onClose(Session sessao) {
-        System.out.println("Cliente " + sessao.getId() + " se desconectou!");
         sessoesAtuais.remove(sessao);
     }
 
@@ -32,8 +30,10 @@ public class WebSocket {
     }
 
     private static String formatarMedida(Medida medida) {
-        return new StringBuilder()
-                .append("{\"temperatura\": ")
+        return new StringBuilder() 
+                .append("{\"hora\": \"")
+                .append(medida.getData().toLocalTime().toString())
+                .append("\", \"temperatura\": ")
                 .append(medida.getTemperatura().toString())
                 .append(", \"humidade\": ")
                 .append(medida.getHumidade().toString())
