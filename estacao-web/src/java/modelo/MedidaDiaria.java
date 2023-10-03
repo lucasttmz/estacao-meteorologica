@@ -12,9 +12,9 @@ public class MedidaDiaria {
     private Double temperaturaMinima;
     private Double temperaturaMedia;
     private Double temperaturaMaxima;
-    private Double humidadeMinima;
-    private Double humidadeMedia;
-    private Double humidadeMaxima;
+    private Double umidadeMinima;
+    private Double umidadeMedia;
+    private Double umidadeMaxima;
     private Boolean choveu;
 
     
@@ -22,14 +22,14 @@ public class MedidaDiaria {
         
     }
 
-    public MedidaDiaria(LocalDate data, Double temperaturaMinima, Double temperaturaMedia, Double temperaturaMaxima, Double humidadeMinima, Double humidadeMedia, Double humidadeMaxima, Boolean choveu) {
+    public MedidaDiaria(LocalDate data, Double temperaturaMinima, Double temperaturaMedia, Double temperaturaMaxima, Double umidadeMinima, Double umidadeMedia, Double umidadeMaxima, Boolean choveu) {
         this.data = data;
         this.temperaturaMinima = temperaturaMinima;
         this.temperaturaMedia = temperaturaMedia;
         this.temperaturaMaxima = temperaturaMaxima;
-        this.humidadeMinima = humidadeMinima;
-        this.humidadeMedia = humidadeMedia;
-        this.humidadeMaxima = humidadeMaxima;
+        this.umidadeMinima = umidadeMinima;
+        this.umidadeMedia = umidadeMedia;
+        this.umidadeMaxima = umidadeMaxima;
         this.choveu = choveu;
     }
 
@@ -65,28 +65,28 @@ public class MedidaDiaria {
         this.temperaturaMaxima = temperaturaMaxima;
     }
 
-    public Double getHumidadeMinima() {
-        return humidadeMinima;
+    public Double getUmidadeMinima() {
+        return umidadeMinima;
     }
 
-    public void setHumidadeMinima(Double humidadeMinima) {
-        this.humidadeMinima = humidadeMinima;
+    public void setUmidadeMinima(Double umidadeMinima) {
+        this.umidadeMinima = umidadeMinima;
     }
 
-    public Double getHumidadeMedia() {
-        return humidadeMedia;
+    public Double getUmidadeMedia() {
+        return umidadeMedia;
     }
 
-    public void setHumidadeMedia(Double humidadeMedia) {
-        this.humidadeMedia = humidadeMedia;
+    public void setUmidadeMedia(Double umidadeMedia) {
+        this.umidadeMedia = umidadeMedia;
     }
 
-    public Double getHumidadeMaxima() {
-        return humidadeMaxima;
+    public Double getUmidadeMaxima() {
+        return umidadeMaxima;
     }
 
-    public void setHumidadeMaxima(Double humidadeMaxima) {
-        this.humidadeMaxima = humidadeMaxima;
+    public void setUmidadeMaxima(Double umidadeMaxima) {
+        this.umidadeMaxima = umidadeMaxima;
     }
 
     public Boolean getChoveu() {

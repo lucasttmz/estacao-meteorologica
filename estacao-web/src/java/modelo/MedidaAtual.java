@@ -11,17 +11,17 @@ import java.time.LocalDateTime;
 public class MedidaAtual {
     private LocalDateTime data;
     private Integer temperatura;
-    private Integer humidade;
+    private Integer umidade;
     private Integer precipitacao;
 
     public MedidaAtual() {
         
     }
     
-    public MedidaAtual(LocalDateTime data, Integer temperatura, Integer humidade, Integer precipitacao) {
+    public MedidaAtual(LocalDateTime data, Integer temperatura, Integer umidade, Integer precipitacao) {
         this.data = data;
         this.temperatura = temperatura;
-        this.humidade = humidade;
+        this.umidade = umidade;
         this.precipitacao = precipitacao;
     }
 
@@ -41,12 +41,12 @@ public class MedidaAtual {
         this.temperatura = temperatura;
     }
 
-    public Integer getHumidade() {
-        return humidade;
+    public Integer getUmidade() {
+        return umidade;
     }
 
-    public void setHumidade(Integer humidade) {
-        this.humidade = humidade;
+    public void setUmidade(Integer umidade) {
+        this.umidade = umidade;
     }
 
     public Integer getPrecipitacao() {

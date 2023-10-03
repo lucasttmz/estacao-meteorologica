@@ -29,21 +29,21 @@ public class Grafico {
         return graficoTemperatura;
     }
     
-    public LineChartModel montarGraficoHumidade() {
-        LineChartModel graficoHumidade = new LineChartModel();
+    public LineChartModel montarGraficoUmidade() {
+        LineChartModel graficoUmidade = new LineChartModel();
         
-        ChartData dadosHumidade = new ChartData();
-        LineChartDataSet configHumidade = new LineChartDataSet();
-        List<Object> temperaturas = new ArrayList<>();
+        ChartData dadosUmidade = new ChartData();
+        LineChartDataSet configUmidade = new LineChartDataSet();
+        List<Object> umidade = new ArrayList<>();
         
-        configHumidade.setData(temperaturas);
-        configHumidade.setFill(false);
-        configHumidade.setLabel("Humidade");
-        configHumidade.setBorderColor("rgb(153, 204, 255)");
-        configHumidade.setTension(0.1);
-        dadosHumidade.addChartDataSet(configHumidade);
-        graficoHumidade.setData(dadosHumidade);
+        configUmidade.setData(umidade);
+        configUmidade.setFill(false);
+        configUmidade.setLabel("Umidade");
+        configUmidade.setBorderColor("rgb(153, 204, 255)");
+        configUmidade.setTension(0.1);
+        dadosUmidade.addChartDataSet(configUmidade);
+        graficoUmidade.setData(dadosUmidade);
         
-        return graficoHumidade;
+        return graficoUmidade;
     }
 }

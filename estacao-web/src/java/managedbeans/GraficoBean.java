@@ -7,21 +7,21 @@ import modelo.Controle;
 import org.primefaces.model.charts.line.LineChartModel;
 
 /**
- * Bean responsável pelo carregamento dos gráficos de temperatura e humidade.
+ * Bean responsável pelo carregamento dos gráficos de temperatura e umidade.
  */
 @ManagedBean
 @ApplicationScoped
 public class GraficoBean {
 
     private LineChartModel graficoTemperatura;
-    private LineChartModel graficoHumidade;
+    private LineChartModel graficoUmidade;
     private Controle controle;
 
     @PostConstruct
     public void inicializarGraficos() {
         controle = new Controle();
         graficoTemperatura = controle.montarGraficoTemperatura();
-        graficoHumidade = controle.montarGraficoHumidade();
+        graficoUmidade = controle.montarGraficoUmidade();
     }
 
     public LineChartModel getGraficoTemperatura() {
@@ -32,12 +32,12 @@ public class GraficoBean {
         this.graficoTemperatura = graficoTemperatura;
     }
 
-    public LineChartModel getGraficoHumidade() {
-        return graficoHumidade;
+    public LineChartModel getGraficoUmidade() {
+        return graficoUmidade;
     }
 
-    public void setGraficoHumidade(LineChartModel graficoHumidade) {
-        this.graficoHumidade = graficoHumidade;
+    public void setGraficoUmidade(LineChartModel graficoUmidade) {
+        this.graficoUmidade = graficoUmidade;
     }
 
     public String historicoMedidas() {

@@ -16,9 +16,9 @@ public class EstacaoFalsa implements Estacao {
         Random rng = new Random();
         LocalDateTime data = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         Integer temperatura = rng.nextInt(100);
-        Integer humidade = rng.nextInt(100);
+        Integer umidade = rng.nextInt(100);
         Integer precipitacao = rng.nextInt(1033);
-        return new MedidaAtual(data, temperatura, humidade, precipitacao);
+        return new MedidaAtual(data, temperatura, umidade, precipitacao);
     }
    
 }

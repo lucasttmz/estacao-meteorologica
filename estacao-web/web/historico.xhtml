@@ -4,32 +4,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Histórico de Medidas</title>
-    </h:head>
-    <h:body>
-        
-      <p:dataTable var="medida" value="#{medidasBean.pesquisarMedidas()}" rows="10"
-                     paginator="true" paginatorPosition="bottom"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} medidas"
-                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-            <p:column field="data" headerText="Data" filterable="false" sortable="false"/>
-            <p:column field="temperaturaMinima" headerText="Temperatura Mínima" filterable="false" sortable="false"/>
-            <p:column field="temperaturaMedia" headerText="Temperatura Média" filterable="false" sortable="false"/>
-            <p:column field="temperaturaMaxima" headerText="Temperatura Máxima" filterable="false" sortable="false"/>
-            <p:column field="humidadeMinima" headerText="Humidade Mínima" filterable="false" sortable="false"/>
-            <p:column field="humidadeMedia" headerText="Humidade Média" filterable="false" sortable="false"/>
-            <p:column field="humidadeMaxima" headerText="Humidade Máxima" filterable="false" sortable="false"/>
-            <p:column headerText="Choveu">
-                <h:outputText value="#{medida.choveu ? 'Sim':'Não'}" />
-            </p:column>
-        </p:dataTable>
+  <h:head>
+    <title>Histórico de Medidas</title>
+  </h:head>
+  <h:body>
 
-        <h:form style="margin-top: 20px; text-align: center">
-            <h:commandLink value="Clique aqui para ver os dados em tempo real" 
-                           action="#{medidasBean.paginaInicial()}"/>
-        </h:form>
-        
-    </h:body>
+    <p:dataTable var="medida" value="#{medidasBean.pesquisarMedidas()}" rows="10"
+                 paginator="true" paginatorPosition="bottom"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} medidas"
+                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+      <p:column field="data" headerText="Data" filterable="false" sortable="false"/>
+      <p:column field="temperaturaMinima" headerText="Temperatura Mínima" filterable="false" sortable="false"/>
+      <p:column field="temperaturaMedia" headerText="Temperatura Média" filterable="false" sortable="false"/>
+      <p:column field="temperaturaMaxima" headerText="Temperatura Máxima" filterable="false" sortable="false"/>
+      <p:column field="umidadeMinima" headerText="Umidade Mínima" filterable="false" sortable="false"/>
+      <p:column field="umidadeMedia" headerText="Umidade Média" filterable="false" sortable="false"/>
+      <p:column field="umidadeMaxima" headerText="Umidade Máxima" filterable="false" sortable="false"/>
+      <p:column headerText="Choveu">
+        <h:outputText value="#{medida.choveu ? 'Sim':'Não'}" />
+      </p:column>
+    </p:dataTable>
+
+    <h:form style="margin-top: 20px; text-align: center">
+      <h:commandLink value="Clique aqui para ver os dados em tempo real" 
+                     action="#{medidasBean.paginaInicial()}"/>
+    </h:form>
+
+  </h:body>
 </html>

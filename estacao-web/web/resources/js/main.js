@@ -4,29 +4,29 @@ const diaNublado = 700;
 const diaEnsolarado = 1000;
 
 let graficoTemp;
-let graficoHumi;
+let graficoUmi;
 
 const spanTemp = document.getElementById("temperatura");
-const spanHumi = document.getElementById("humidade");
+const spanUmi = document.getElementById("umidade");
 const spanChuva = document.getElementById("precipitacao");
 
 const reajustarGraficos = () => {
   graficoTemp.chart.data.datasets[0].data.shift();
   graficoTemp.chart.data.labels.shift();
-  graficoHumi.chart.data.datasets[0].data.shift();
-  graficoHumi.chart.data.labels.shift();
+  graficoUmi.chart.data.datasets[0].data.shift();
+  graficoUmi.chart.data.labels.shift();
 };
 
 const adicionarMedidas = (medidas) => {
   graficoTemp.chart.data.labels.push(medidas.hora);
   graficoTemp.chart.data.datasets[0].data.push(medidas.temperatura);
-  graficoHumi.chart.data.labels.push(medidas.hora);
-  graficoHumi.chart.data.datasets[0].data.push(medidas.humidade);
+  graficoUmi.chart.data.labels.push(medidas.hora);
+  graficoUmi.chart.data.datasets[0].data.push(medidas.umidade);
 
   graficoTemp.chart.update();
-  spanTemp.innerHTML = parseFloat(medidas.temperatura).toFixed(1);
-  graficoHumi.chart.update();
-  spanHumi.innerHTML = parseFloat(medidas.humidade).toFixed(1);
+  spanTemp.innerHTML = medidas.temperatura;
+  graficoUmi.chart.update();
+  spanUmi.innerHTML = medidas.umidade;
   
   checarSeEstaChuvendo(medidas.precipitacao);
 };
@@ -42,7 +42,7 @@ const conectarWebSocket = () => {
     socket.onmessage = async (event) => {
       let medidas = JSON.parse(event.data);
       graficoTemp = PF("gtemp");
-      graficoHumi = PF("ghumi");
+      graficoUmi = PF("ghumi");
       if (qtdDados === 5) {
         reajustarGraficos();
       } else {
@@ -73,25 +73,15 @@ const climaSvg = document.querySelector('.climaImg');
 const clima = document.querySelector('.clima');
 
 const checarSeEstaChuvendo = (precipitacao) => {
-  if (precipitacao >= 1000) {
+  if (precipitacao > 500) {
     climaSvg.src = imagemSol;
-    clima.innerHTML = "Dia Ensolarado";
-    stopItRain();
-  } 
-  else if (precipitacao >= 700) {
-    climaSvg.src = imagemSol;
-    clima.innerHTML = "Dia Nublado";
-    stopItRain();
-  }
-  else if (precipitacao >= 500) {
-    climaSvg.src = imagemChuva;
-    clima.innerHTML = "Chuva Leve";
-    makeItRain();
+    clima.innerHTML = "Sol";
+    pararChuva();
   }
   else {
     climaSvg.src = imagemChuva;
-    clima.innerHTML = "Chuva Forte";
-    makeItRain();
+    clima.innerHTML = "Chuva";
+    fazerChover();
   }
   spanChuva.innerHTML = precipitacao;
 };

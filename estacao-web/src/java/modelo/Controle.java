@@ -15,9 +15,9 @@ public class Controle {
         return grafico.montarGraficoTemperatura();
     }
 
-    public LineChartModel montarGraficoHumidade() {
+    public LineChartModel montarGraficoUmidade() {
         Grafico grafico = new Grafico();
-        return grafico.montarGraficoHumidade();
+        return grafico.montarGraficoUmidade();
     }
 
     public MedidaAtual lerMedidaAtual() {

@@ -18,9 +18,9 @@ public class MedidaDiariaDAO {
         MIN(temperatura) AS tempMin,
         AVG(temperatura) AS tempAvg,
         MAX(temperatura) AS tempMax
-        MIN(humidade) AS humMin,
-        AVG(humidade) AS humAvg,
-        MAX(humidade) AS humMax
+        MIN(umidade) AS umiMin,
+        AVG(umidade) AS umiAvg,
+        MAX(umidade) AS umiMax
         MAX(precipitacao >= 50) AS choveu
     FROM
         MedidaAtual
