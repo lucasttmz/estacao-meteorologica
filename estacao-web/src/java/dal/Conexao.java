@@ -15,14 +15,13 @@ public class Conexao {
         this.mensagem = "";
         try {
             if (con == null || con.isClosed()){
+                // Linha mágica, sem isso aqui não funciona ?!
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(conStr, "root", "");
-                System.out.println("Sucesso ao realizar conexao com o DB");
             }
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             this.mensagem = "Erro ao conectar com DB: " + e.getMessage();
         }
-        
-        System.out.println(this.mensagem);
         return con;
     }
     

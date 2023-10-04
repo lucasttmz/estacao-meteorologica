@@ -56,5 +56,5 @@ public class MedidaAtual {
     public void setPrecipitacao(Integer precipitacao) {
         this.precipitacao = precipitacao;
     }
-    
+
 }

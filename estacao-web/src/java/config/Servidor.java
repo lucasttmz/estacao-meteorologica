@@ -7,6 +7,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import modelo.Controle;
+import static modelo.Estaticos.DELAY_INICIAL;
 
 import static modelo.Estaticos.INTERVALO_ENTRE_DADOS;
 
@@ -29,7 +30,7 @@ public class Servidor implements ServletContextListener {
         executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
             WebSocket.enviarMedida(new Controle().lerMedidaAtual());
-        }, 0, INTERVALO_ENTRE_DADOS, TimeUnit.SECONDS);
+        }, DELAY_INICIAL, INTERVALO_ENTRE_DADOS, TimeUnit.SECONDS);
     }
 
     @Override
