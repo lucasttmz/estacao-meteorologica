@@ -41,6 +41,8 @@ public class MedidaDiariaDAO {
         dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 8), 12d, 17d, 23d, 30d, 30d, 35d, true));
         dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 9), 20d, 30d, 40d, 5d, 10d, 15d, false));
         dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 10), 40d, 47d, 55d, 25d, 30d, 35d, true));
+        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 7), 30d, 35d, 40d, 5d, 10d, 15d, false));
+        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 8), 12d, 17d, 23d, 30d, 30d, 35d, true));
         return dados;
     }
 }

@@ -121,6 +121,14 @@ header {
   text-align: center;
 }
 
+.link-hist {
+    padding: 5px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    text-decoration: none;
+}
+
 @media(max-width: 720px) {
   .container {
     flex-direction: column-reverse;

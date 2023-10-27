@@ -1,24 +1,16 @@
-let fazerChover = function() {
-    document.querySelector('.rain').innerHTML='';
-  
-    var incremento = 0;
-    var pingos = "";
-    var pingosFundo = "";
-  
-    while (incremento < 100) {
-      var max100 = (Math.floor(Math.random() * 98 + 1));
-      var max5 = (Math.floor(Math.random() * 4 + 2));
+const ctnChuva = document.querySelector(".container-chuva");
 
-      incremento += max5;
-      pingos += '<div class="drop" style="left: ' + incremento + '%; bottom: ' + (max5 + max5 - 1 + 100) + '%; animation-delay: 0.' + max100 + 's; animation-duration: 0.5' + max100 + 's;"><div class="stem" style="animation-delay: 0.' + max100 + 's; animation-duration: 0.5' + max100 + 's;"></div><div class="splat" style="animation-delay: 0.' + max100 + 's; animation-duration: 0.5' + max100 + 's;"></div></div>';
-      pingosFundo += '<div class="drop" style="right: ' + incremento + '%; bottom: ' + (max5 + max5 - 1 + 100) + '%; animation-delay: 0.' + max100 + 's; animation-duration: 0.5' + max100 + 's;"><div class="stem" style="animation-delay: 0.' + max100 + 's; animation-duration: 0.5' + max100 + 's;"></div><div class="splat" style="animation-delay: 0.' + max100 + 's; animation-duration: 0.5' + max100 + 's;"></div></div>';
-        
-    }
+function pararChuva() {
+  ctnChuva.innerHTML = "";
+}
 
-  
-    document.querySelector('.rain').insertAdjacentHTML('afterbegin', pingos);
-  };
-
-  let pararChuva = () =>{
-    document.querySelector('.rain').innerHTML='';
-  };
+function fazerChover() {
+  for (let posX = 5; posX <= 95; posX += 5 ) {
+    const delay = Math.floor(Math.random() * 100) + 1;
+    const pingo = document.createElement("div");
+    pingo.classList.add("pingo");
+    pingo.style.left = `${posX}%`;
+    pingo.style.animationDelay = `0.${delay}s`;
+    ctnChuva.appendChild(pingo);
+  }
+}

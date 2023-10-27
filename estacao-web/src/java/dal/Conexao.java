@@ -17,7 +17,7 @@ public class Conexao {
             if (con == null || con.isClosed()){
                 // Linha mágica, sem isso aqui não funciona ?!
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                con = DriverManager.getConnection(conStr, "root", "");
+                con = DriverManager.getConnection(conStr, "root", "lucas123");
             }
         } catch (ClassNotFoundException | SQLException e) {
             this.mensagem = "Erro ao conectar com DB: " + e.getMessage();

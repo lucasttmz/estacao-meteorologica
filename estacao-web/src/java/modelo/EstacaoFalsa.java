@@ -12,7 +12,6 @@ public class EstacaoFalsa implements Estacao {
 
     @Override
     public MedidaAtual lerMedidaAtual() {
-        // Reescrever os valores para que sejam mais próximos dos valores reais
         Random rng = new Random();
         LocalDateTime data = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         Integer temperatura = rng.nextInt(100);

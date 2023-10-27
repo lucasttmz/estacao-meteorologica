@@ -80,11 +80,11 @@
       </div>
     </main>
 
-    <div class="rain front-row"></div>
+    <div class="container-chuva"></div>
 
     <!-- A chuva estava fazendo com que fosse impossivel clicar -->
     <h:form style="z-index: 1"> 
-      <h:commandLink value="Ver o histórico das medidas" action="#{graficoBean.historicoMedidas()}"/>
+        <h:commandLink styleClass="link-hist" value="Ver o histórico das medidas" action="#{graficoBean.historicoMedidas()}"/>
     </h:form>
 
     <h:outputScript library="js" name="main.js" />
