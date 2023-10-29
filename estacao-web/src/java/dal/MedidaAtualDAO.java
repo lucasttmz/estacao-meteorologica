@@ -26,10 +26,9 @@ public class MedidaAtualDAO {
 
         try {
             // Mudar a query para ser dinamica
-            Query query = session.createQuery("from MedidaAtual m where m.idMedidaAtual = :id");
-            query.setParameter("id", 1);
+            Query query = session.createQuery("from MedidaAtual where id=(select max(idMedidaAtual) from MedidaAtual)");
             if (query.list().size() > 0) {
-                medida = (MedidaAtual) query.list().get(0);
+                medida = (MedidaAtual) query.uniqueResult();
             } else {
                 this.mensagem = "Registro não encontrado";
             }
@@ -44,36 +43,45 @@ public class MedidaAtualDAO {
     }
 
     public List<MedidaDiaria> pesquisarMedidasDiarias() {
-        // METODO TEMPORARIO PARA TESTES
-         /*
-         Algo semelhante a isso porem no Hibernate
-         SELECT 
-            DATE(dataHora) AS data,
-            MIN(temperatura) AS tempMin,
-            AVG(temperatura) AS tempAvg,
-            MAX(temperatura) AS tempMax
-            MIN(umidade) AS umiMin,
-            AVG(umidade) AS umiAvg,
-            MAX(umidade) AS umiMax
-            MAX(precipitacao >= 50) AS choveu
-         FROM
-            MedidaAtual
-         GROUP BY
-            DATE(dataHora);
-         */
-        List<MedidaDiaria> dados = new ArrayList<>();
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 1), 10d, 20d, 30d, 5d, 20d, 35d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 2), 15d, 25d, 35d, 50d, 200d, 350d, true));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 3), 5d, 10d, 15d, 5d, 10d, 15d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 4), 50d, 55d, 60d, 1d, 2d, 3d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 5), 10d, 25d, 40d, 20d, 40d, 60d, true));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 6), 40d, 60d, 80d, 5d, 7d, 10d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 7), 30d, 35d, 40d, 5d, 10d, 15d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 8), 12d, 17d, 23d, 30d, 30d, 35d, true));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 9), 20d, 30d, 40d, 5d, 10d, 15d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 10), 40d, 47d, 55d, 25d, 30d, 35d, true));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 7), 30d, 35d, 40d, 5d, 10d, 15d, false));
-        dados.add(new MedidaDiaria(LocalDate.of(2023, Month.MARCH, 8), 12d, 17d, 23d, 30d, 30d, 35d, true));
-        return dados;
+        
+        List<MedidaDiaria> medidas = new ArrayList<MedidaDiaria>();
+        
+        try {
+            Query query = session.createQuery("SELECT "
+                    + "DATE(m.momento) AS data, "
+                    + "MIN(m.temperatura) AS temperaturaMinima, "
+                    + "AVG(m.temperatura) AS temperaturaMedia, "
+                    + "MAX(m.temperatura) AS temperaturaMaxima, "
+                    + "MIN(m.umidade) AS umidadeMinima, "
+                    + "AVG(m.umidade) AS umidadeMedia, "
+                    + "MAX(m.umidade) AS umidadeMaxima, "
+                    + "CASE WHEN MAX(m.chuva) >= 50 THEN 1 ELSE 0 END AS choveu "
+                    + "FROM MedidaAtual m "
+                    + "GROUP BY DATE(m.momento)");
+            
+            if (query.list().size() > 0) {
+                System.out.println("PRINT AQUI");
+                
+                for (int i = 0; i < query.list().size(); i++) {
+                    MedidaDiaria medida = (MedidaDiaria) query.list().get(i);
+                    System.out.println(medida);
+                    medidas.add(medida);
+                }
+            } else {
+                this.mensagem = "Registro não encontrado";
+            }
+
+        } catch (Exception e) {
+            this.mensagem = "Erro de BD";
+        } finally {
+            session.close();
+        }
+        
+        for (MedidaDiaria medida : medidas) {
+            System.out.println(medida);
+            System.out.println("123");
+        }
+
+        return medidas;
     }
 }

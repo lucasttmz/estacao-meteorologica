@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Representa a média das medidas de um certo dia.
@@ -8,21 +9,21 @@ import java.time.LocalDate;
  * FAZER O MAPEAMENTO DO HIBERNATE (NUNO)
  */
 public class MedidaDiaria {
-    private LocalDate data;
-    private Double temperaturaMinima;
-    private Double temperaturaMedia;
-    private Double temperaturaMaxima;
-    private Double umidadeMinima;
-    private Double umidadeMedia;
-    private Double umidadeMaxima;
-    private Boolean choveu;
+    private Date data;
+    private int temperaturaMinima;
+    private double temperaturaMedia;
+    private int temperaturaMaxima;
+    private int umidadeMinima;
+    private double umidadeMedia;
+    private int umidadeMaxima;
+    private boolean choveu;
 
     
     public MedidaDiaria() {
         
     }
 
-    public MedidaDiaria(LocalDate data, Double temperaturaMinima, Double temperaturaMedia, Double temperaturaMaxima, Double umidadeMinima, Double umidadeMedia, Double umidadeMaxima, Boolean choveu) {
+    public MedidaDiaria(Date data, int temperaturaMinima, double temperaturaMedia, int temperaturaMaxima, int umidadeMinima, double umidadeMedia, int umidadeMaxima, boolean choveu) {
         this.data = data;
         this.temperaturaMinima = temperaturaMinima;
         this.temperaturaMedia = temperaturaMedia;
@@ -33,68 +34,68 @@ public class MedidaDiaria {
         this.choveu = choveu;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
-    public Double getTemperaturaMinima() {
+    public int getTemperaturaMinima() {
         return temperaturaMinima;
     }
 
-    public void setTemperaturaMinima(Double temperaturaMinima) {
+    public void setTemperaturaMinima(int temperaturaMinima) {
         this.temperaturaMinima = temperaturaMinima;
     }
 
-    public Double getTemperaturaMedia() {
+    public double getTemperaturaMedia() {
         return temperaturaMedia;
     }
 
-    public void setTemperaturaMedia(Double temperaturaMedia) {
+    public void setTemperaturaMedia(double temperaturaMedia) {
         this.temperaturaMedia = temperaturaMedia;
     }
 
-    public Double getTemperaturaMaxima() {
+    public int getTemperaturaMaxima() {
         return temperaturaMaxima;
     }
 
-    public void setTemperaturaMaxima(Double temperaturaMaxima) {
+    public void setTemperaturaMaxima(int temperaturaMaxima) {
         this.temperaturaMaxima = temperaturaMaxima;
     }
 
-    public Double getUmidadeMinima() {
+    public int getUmidadeMinima() {
         return umidadeMinima;
     }
 
-    public void setUmidadeMinima(Double umidadeMinima) {
+    public void setUmidadeMinima(int umidadeMinima) {
         this.umidadeMinima = umidadeMinima;
     }
 
-    public Double getUmidadeMedia() {
+    public double getUmidadeMedia() {
         return umidadeMedia;
     }
 
-    public void setUmidadeMedia(Double umidadeMedia) {
+    public void setUmidadeMedia(double umidadeMedia) {
         this.umidadeMedia = umidadeMedia;
     }
 
-    public Double getUmidadeMaxima() {
+    public int getUmidadeMaxima() {
         return umidadeMaxima;
     }
 
-    public void setUmidadeMaxima(Double umidadeMaxima) {
+    public void setUmidadeMaxima(int umidadeMaxima) {
         this.umidadeMaxima = umidadeMaxima;
     }
 
-    public Boolean getChoveu() {
+    public boolean isChoveu() {
         return choveu;
     }
 
-    public void setChoveu(Boolean choveu) {
+    public void setChoveu(boolean choveu) {
         this.choveu = choveu;
     }
-    
+
 }

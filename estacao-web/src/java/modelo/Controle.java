@@ -32,7 +32,13 @@ public class Controle {
 
     public List<MedidaDiaria> listarHistoricoMedidas() {
         MedidaAtualDAO medidaDAO = new MedidaAtualDAO();
-        return medidaDAO.pesquisarMedidasDiarias();
+        System.out.println("oi");
+        List<MedidaDiaria> pesquisarMedidasDiarias = medidaDAO.pesquisarMedidasDiarias();
+        System.out.println("size = " + pesquisarMedidasDiarias.size());
+        for (MedidaDiaria pesquisarMedidasDiaria : pesquisarMedidasDiarias) {
+            System.out.println(pesquisarMedidasDiaria);
+        }
+        return null;
     }
 
 }
