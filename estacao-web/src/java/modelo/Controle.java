@@ -1,6 +1,6 @@
 package modelo;
 
-import dal.MedidaDiariaDAO;
+import dal.MedidaAtualDAO;
 import java.util.List;
 import static modelo.Estaticos.UTILIZAR_ARDUINO;
 import org.primefaces.model.charts.line.LineChartModel;
@@ -31,8 +31,8 @@ public class Controle {
     }
 
     public List<MedidaDiaria> listarHistoricoMedidas() {
-        MedidaDiariaDAO medidaDiariaDAO = new MedidaDiariaDAO();
-        return medidaDiariaDAO.pesquisarMedidasDiarias();
+        MedidaAtualDAO medidaDAO = new MedidaAtualDAO();
+        return medidaDAO.pesquisarMedidasDiarias();
     }
 
 }

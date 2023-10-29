@@ -31,21 +31,7 @@ public class WebSocket {
 
     public static void enviarMedida(MedidaAtual medida) {
         for (Session sessao : sessoesAtuais) {
-            sessao.getAsyncRemote().sendText(formatarMedida(medida));
+            sessao.getAsyncRemote().sendText(medida.formatarMedida());
         }
-    }
-
-    private static String formatarMedida(MedidaAtual medida) {
-        return new StringBuilder() 
-                .append("{\"hora\": \"")
-                .append(medida.getData().toLocalTime().toString())
-                .append("\", \"temperatura\": ")
-                .append(medida.getTemperatura().toString())
-                .append(", \"umidade\": ")
-                .append(medida.getUmidade().toString())
-                .append(", \"precipitacao\": ")
-                .append(medida.getPrecipitacao().toString())
-                .append("}")
-                .toString();
     }
 }

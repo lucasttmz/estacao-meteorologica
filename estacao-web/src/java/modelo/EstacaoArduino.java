@@ -1,6 +1,7 @@
 package modelo;
 
 import dal.MedidaAtualDAO;
+import java.time.LocalDateTime;
 
 /**
  * Responsável por ler as medidas atuais vindas do Arduino que foram salvas 

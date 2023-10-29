@@ -1,5 +1,6 @@
 package config;
 
+import dal.Conexao;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,5 +40,6 @@ public class Servidor implements ServletContextListener {
         if (executor != null) {
             executor.shutdownNow();
         }
+        Conexao.shutdown(); // Senão o tomcat não termina!
     }
 }

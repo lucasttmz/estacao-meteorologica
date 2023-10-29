@@ -1,7 +1,7 @@
 package modelo;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -13,11 +13,18 @@ public class EstacaoFalsa implements Estacao {
     @Override
     public MedidaAtual lerMedidaAtual() {
         Random rng = new Random();
-        LocalDateTime data = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         Integer temperatura = rng.nextInt(100);
         Integer umidade = rng.nextInt(100);
-        Integer precipitacao = rng.nextInt(1033);
-        return new MedidaAtual(data, temperatura, umidade, precipitacao);
+        Integer chuva = rng.nextInt(1033);
+        Date data = Date.from(Instant.now());
+        
+        MedidaAtual medidaAtual = new MedidaAtual();
+        medidaAtual.setChuva(chuva);
+        medidaAtual.setUmidade(umidade);
+        medidaAtual.setTemperatura(temperatura);
+        medidaAtual.setMomento(data);
+        
+        return medidaAtual;
     }
    
 }
