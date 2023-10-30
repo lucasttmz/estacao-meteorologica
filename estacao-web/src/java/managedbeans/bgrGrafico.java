@@ -1,5 +1,6 @@
 package managedbeans;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -11,7 +12,7 @@ import org.primefaces.model.charts.line.LineChartModel;
  */
 @ManagedBean
 @ApplicationScoped
-public class GraficoBean {
+public class bgrGrafico implements Serializable {
 
     private LineChartModel graficoTemperatura;
     private LineChartModel graficoUmidade;

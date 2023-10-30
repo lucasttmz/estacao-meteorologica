@@ -1,12 +1,10 @@
 package modelo;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 /**
  * Representa a média das medidas de um certo dia.
- * 
- * FAZER O MAPEAMENTO DO HIBERNATE (NUNO)
+ * Gerada automaticamente baseada em sua tabela
  */
 public class MedidaDiaria {
     private Date data;

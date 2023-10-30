@@ -11,8 +11,8 @@ import modelo.MedidaAtual;
 /**
  * Configuração do WebSocket.
  *
- * Realiza o handshake cliente-servidor armazenando as sessões conectadas. 
- * É responsável por enviar as medidas para o front-end.
+ * Realiza o handshake cliente-servidor armazenando as sessões conectadas. É
+ * responsável por enviar as medidas para o front-end.
  */
 @ServerEndpoint(value = "/ws")
 public class WebSocket {
