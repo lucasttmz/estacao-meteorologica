@@ -1,8 +1,9 @@
 package Modelo;
-import DAL.RegistroDAO;
 import com.fazecast.jSerialComm.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Serial implements Runnable {    
     @Override
@@ -18,19 +19,27 @@ public class Serial implements Runnable {
         comPort.openPort();
         comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
         InputStream in = comPort.getInputStream();
-        Registro registro = new Registro();
-        RegistroDAO registroDAO = new RegistroDAO();
+        List<String> registro = new ArrayList<String>();
+        Controle controle = new Controle();
+//        Registro registro = new Registro();
+//        RegistroDAO registroDAO = new RegistroDAO();
         try {
             while (Estaticos.coletaSerial) {
                 retorno += (char) in.read();
                 if (retorno.charAt(retorno.length()-1) == '\n') {
                     valores = retorno.split(",");
-                    registro.umidade = String.valueOf(valores[0]);
-                    registro.temperatura = String.valueOf(valores[1]);
-                    registro.chuva = String.valueOf(valores[2]);
+//                    registro.umidade = String.valueOf(valores[0]);
+//                    registro.temperatura = String.valueOf(valores[1]);
+//                    registro.chuva = String.valueOf(valores[2]);
+                    registro.add(String.valueOf(valores[1])); // temperatura
+                    registro.add(String.valueOf(valores[0])); // umidade
+//                    registro.add(String.valueOf(valores[2])); // chuva
+                    registro.add(String.valueOf(valores[2].replaceAll("\\R", ""))); // chuva
                     retorno = "";
-                    registroDAO.registrar(registro);
-                    System.out.println(registro.toString());
+                    controle.salvarNovaMedida(registro);
+//                    registroDAO.registrar(registro);
+                    System.out.println(String.join(",", registro));
+                    registro.clear();
                     
                 }
             }

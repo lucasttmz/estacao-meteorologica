@@ -24,10 +24,18 @@
                 </h:outputText>
             </p:column>
             <p:column field="temperaturaMinima" headerText="Temperatura Mínima" filterable="false" sortable="false"/>
-            <p:column field="temperaturaMedia" headerText="Temperatura Média" filterable="false" sortable="false"/>
+            <p:column headerText="Temperatura Média">
+                <h:outputText value="#{medida.temperaturaMedia}" > 
+                    <f:convertNumber pattern="#0.0" locale="pt_BR"/>
+                </h:outputText>
+            </p:column>
             <p:column field="temperaturaMaxima" headerText="Temperatura Máxima" filterable="false" sortable="false"/>
             <p:column field="umidadeMinima" headerText="Umidade Mínima" filterable="false" sortable="false"/>
-            <p:column field="umidadeMedia" headerText="Umidade Média" filterable="false" sortable="false"/>
+            <p:column headerText="Umidade Média">
+                <h:outputText value="#{medida.umidadeMedia}" > 
+                    <f:convertNumber pattern="#0.0" locale="pt_BR"/>
+                </h:outputText>
+            </p:column>
             <p:column field="umidadeMaxima" headerText="Umidade Máxima" filterable="false" sortable="false"/>
             <p:column headerText="Choveu">
                 <h:outputText value="#{medida.choveu ? 'Sim':'Não'}" />
