@@ -25,11 +25,11 @@ public class MedidaAtualDAO {
             if (query.list().size() > 0) {
                 medida = (MedidaAtual) query.uniqueResult();
             } else {
-                this.mensagem = "Registro não encontrado";
+                this.mensagem = "Nenhum registro salvo no banco de dados";
             }
             session.flush();
         } catch (Exception e) {
-            this.mensagem = "Erro de BD";
+            this.mensagem = "Erro durante a conexão com o banco de dados";
         } finally {
             session.close();
         }
@@ -55,22 +55,26 @@ public class MedidaAtualDAO {
                     + "GROUP BY DATE(m.momento)");
 
             List<Object[]> resultados = query.list();
-            MedidaDiaria medidaDiaria;
-            for (Object[] resultado : resultados) {
-                medidaDiaria = new MedidaDiaria();
-                medidaDiaria.setData((Date) resultado[0]);
-                medidaDiaria.setTemperaturaMinima((Integer) resultado[1]);
-                medidaDiaria.setTemperaturaMedia((Double) resultado[2]);
-                medidaDiaria.setTemperaturaMaxima((Integer) resultado[3]);
-                medidaDiaria.setUmidadeMinima((Integer) resultado[4]);
-                medidaDiaria.setUmidadeMedia((Double) resultado[5]);
-                medidaDiaria.setUmidadeMaxima((Integer) resultado[6]);
-                medidaDiaria.setChoveu((Boolean) resultado[7]);
-                medidas.add(medidaDiaria);
+            if (resultados.size() > 0) {
+                MedidaDiaria medidaDiaria;
+                for (Object[] resultado : resultados) {
+                    medidaDiaria = new MedidaDiaria();
+                    medidaDiaria.setData((Date) resultado[0]);
+                    medidaDiaria.setTemperaturaMinima((Integer) resultado[1]);
+                    medidaDiaria.setTemperaturaMedia((Double) resultado[2]);
+                    medidaDiaria.setTemperaturaMaxima((Integer) resultado[3]);
+                    medidaDiaria.setUmidadeMinima((Integer) resultado[4]);
+                    medidaDiaria.setUmidadeMedia((Double) resultado[5]);
+                    medidaDiaria.setUmidadeMaxima((Integer) resultado[6]);
+                    medidaDiaria.setChoveu((Boolean) resultado[7]);
+                    medidas.add(medidaDiaria);
+                }
+            } else {
+                this.mensagem = "Nenhum registro salvo no banco de dados";
             }
 
         } catch (Exception e) {
-            this.mensagem = "Erro de BD";
+            this.mensagem = "Erro durante a conexão com o banco de dados";
         } finally {
             session.close();
         }

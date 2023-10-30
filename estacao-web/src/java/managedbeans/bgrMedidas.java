@@ -18,7 +18,6 @@ public class bgrMedidas implements Serializable {
     private List<MedidaDiaria> historicoDeMedidas;
 
     public List<MedidaDiaria> getHistoricoDeMedidas() {
-        System.out.println("get");
         return historicoDeMedidas;
     }
 

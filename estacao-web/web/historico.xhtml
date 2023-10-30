@@ -18,7 +18,11 @@
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} medidas"
                      rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-            <p:column field="data" headerText="Data" filterable="false" sortable="false"/>
+            <p:column headerText="Data">
+                <h:outputText value="#{medida.data}"> 
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:outputText>
+            </p:column>
             <p:column field="temperaturaMinima" headerText="Temperatura Mínima" filterable="false" sortable="false"/>
             <p:column field="temperaturaMedia" headerText="Temperatura Média" filterable="false" sortable="false"/>
             <p:column field="temperaturaMaxima" headerText="Temperatura Máxima" filterable="false" sortable="false"/>

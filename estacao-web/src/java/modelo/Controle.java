@@ -1,5 +1,6 @@
 package modelo;
 
+import config.WebSocket;
 import dal.MedidaAtualDAO;
 import java.util.List;
 import static modelo.Estaticos.UTILIZAR_ARDUINO;
@@ -20,16 +21,16 @@ public class Controle {
         return grafico.montarGraficoUmidade();
     }
 
-    public MedidaAtual lerMedidaAtual() {
+    public void enviarMedidaAtual() {
         Estacao estacao;
         if (UTILIZAR_ARDUINO) {
             estacao = new EstacaoArduino();
         } else {
             estacao = new EstacaoFalsa();
         }
-        return estacao.lerMedidaAtual();
+        WebSocket.enviarMedida(estacao.lerMedidaAtual());
     }
-
+    
     public List<MedidaDiaria> listarHistoricoMedidas() {
         MedidaAtualDAO medidaDAO = new MedidaAtualDAO();
         return medidaDAO.pesquisarMedidasDiarias();

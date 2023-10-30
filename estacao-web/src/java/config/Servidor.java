@@ -30,7 +30,7 @@ public class Servidor implements ServletContextListener {
         System.out.println("Contexto iniciado...");
         executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
-            WebSocket.enviarMedida(new Controle().lerMedidaAtual());
+            new Controle().enviarMedidaAtual();
         }, DELAY_INICIAL, INTERVALO_ENTRE_DADOS, TimeUnit.SECONDS);
     }
 
