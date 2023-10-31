@@ -1,0 +1,10 @@
+.estilo-link {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    background: #04b36a;
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.30);
+    color: white;
+    font-weight: bold;
+}

@@ -21,7 +21,7 @@ public class Conexao {
         return sessionFactory;
     }
     
-    public static void shutdown() {
+    public static void desligar() {
         sessionFactory.close();
     }
 }

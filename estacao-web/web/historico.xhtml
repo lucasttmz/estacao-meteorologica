@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Histórico de Medidas</title>
-
+        <h:outputStylesheet library="css" name="historico.css"/>
         <f:metadata>
             <f:viewAction action="#{bgrMedidas.carregarHistorico()}" />
         </f:metadata>
@@ -44,8 +44,7 @@
 
         <h:form style="margin-top: 20px; text-align: center;">
             <h:commandLink value="Clique aqui para ver os dados em tempo real" 
-                           action="#{bgrMedidas.paginaInicial()}"
-                           style=" text-decoration: none; color: black"/>
+                           action="#{bgrMedidas.paginaInicial()}" styleClass="estilo-link" />
         </h:form>
 
     </h:body>

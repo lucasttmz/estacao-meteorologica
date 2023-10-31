@@ -20,6 +20,7 @@
     <h:outputStylesheet library="css" name="styles.css"/>
     <h:outputStylesheet library="css" name="chuva.css"/>
     <h:outputStylesheet library="css" name="darkstyle.css"/>
+    <h:outputStylesheet library="css" name="historico.css"/>
 
     <!--Resources-->
     <h:outputScript>
@@ -82,9 +83,8 @@
 
     <div class="container-chuva"></div>
 
-    <!-- A chuva estava fazendo com que fosse impossivel clicar -->
     <h:form style="z-index: 1"> 
-        <h:commandLink styleClass="link-hist" value="Ver o histórico das medidas" action="#{bgrGrafico.historicoMedidas()}"/>
+        <h:commandLink styleClass="estilo-link" value="Ver o histórico das medidas" action="#{bgrGrafico.historicoMedidas()}"/>
     </h:form>
 
     <h:outputScript library="js" name="main.js" />
