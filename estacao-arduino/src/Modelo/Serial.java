@@ -15,7 +15,7 @@ public class Serial implements Runnable {
         String retorno = "";
         String[] valores = new String[3];
         
-        SerialPort comPort = SerialPort.getCommPort("COM5");
+        SerialPort comPort = SerialPort.getCommPort("COM3");
         comPort.openPort();
         comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
         InputStream in = comPort.getInputStream();
@@ -36,6 +36,7 @@ public class Serial implements Runnable {
 //                    registro.add(String.valueOf(valores[2])); // chuva
                     registro.add(String.valueOf(valores[2].replaceAll("\\R", ""))); // chuva
                     retorno = "";
+                    
                     controle.salvarNovaMedida(registro);
 //                    registroDAO.registrar(registro);
                     System.out.println(String.join(",", registro));
