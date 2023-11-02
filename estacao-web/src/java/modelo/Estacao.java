@@ -9,5 +9,6 @@ package modelo;
 public interface Estacao {
 
     public MedidaAtual lerMedidaAtual();
+    public String getMensagem();
 
 }

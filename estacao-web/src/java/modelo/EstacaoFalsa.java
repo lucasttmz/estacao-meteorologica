@@ -27,4 +27,9 @@ public class EstacaoFalsa implements Estacao {
         return medidaAtual;
     }
 
+    @Override
+    public String getMensagem() {
+        return "";
+    }
+
 }

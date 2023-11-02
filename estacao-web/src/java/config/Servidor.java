@@ -40,6 +40,6 @@ public class Servidor implements ServletContextListener {
         if (executor != null) {
             executor.shutdownNow();
         }
-        Conexao.desligar(); // Senão o tomcat não termina!
+        Conexao.fecharFactory();// Senão o tomcat não termina!
     }
 }

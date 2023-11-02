@@ -9,7 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
- * DAO para ler a medida atual salva diretamente pelo Arduino. (NUNO)
+ * DAO para ler a medida atual salva diretamente pelo Arduino.
  */
 public class MedidaAtualDAO {
 
@@ -32,6 +32,7 @@ public class MedidaAtualDAO {
             this.mensagem = "Erro durante a conexão com o banco de dados";
         } finally {
             session.close();
+            Conexao.limparCache();
         }
 
         return medida;

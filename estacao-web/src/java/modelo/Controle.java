@@ -28,9 +28,12 @@ public class Controle {
         } else {
             estacao = new EstacaoFalsa();
         }
-        WebSocket.enviarMedida(estacao.lerMedidaAtual());
+        MedidaAtual medidaAtual = estacao.lerMedidaAtual();
+        if (estacao.getMensagem().isEmpty()) {
+            WebSocket.enviarMedida(medidaAtual);
+        }
     }
-    
+
     public List<MedidaDiaria> listarHistoricoMedidas() {
         MedidaAtualDAO medidaDAO = new MedidaAtualDAO();
         return medidaDAO.pesquisarMedidasDiarias();
