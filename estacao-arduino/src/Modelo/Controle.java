@@ -7,6 +7,11 @@ import java.util.List;
 
 public class Controle {
     public void salvarNovaMedida(List<String> medidas) {
+        
+        for (String medida : medidas) {
+            System.out.println(medida);
+        }
+        medidas.set(1, medidas.get(1).charAt(0) + "" + medidas.get(1).charAt(1));
         MedidaAtual medidaAtual = new MedidaAtual();
         medidaAtual.setMomento(Timestamp.valueOf(LocalDateTime.now()));
         medidaAtual.setTemperatura(Integer.valueOf(medidas.get(0)));
