@@ -2,6 +2,7 @@ package managedbeans;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

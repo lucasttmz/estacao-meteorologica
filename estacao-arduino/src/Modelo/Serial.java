@@ -21,24 +21,17 @@ public class Serial implements Runnable {
         InputStream in = comPort.getInputStream();
         List<String> registro = new ArrayList<String>();
         Controle controle = new Controle();
-//        Registro registro = new Registro();
-//        RegistroDAO registroDAO = new RegistroDAO();
         try {
             while (Estaticos.coletaSerial) {
                 retorno += (char) in.read();
                 if (retorno.charAt(retorno.length()-1) == '\n') {
                     valores = retorno.split(",");
-//                    registro.umidade = String.valueOf(valores[0]);
-//                    registro.temperatura = String.valueOf(valores[1]);
-//                    registro.chuva = String.valueOf(valores[2]);
                     registro.add(String.valueOf(valores[1])); // temperatura
                     registro.add(String.valueOf(valores[0])); // umidade
-//                    registro.add(String.valueOf(valores[2])); // chuva
                     registro.add(String.valueOf(valores[2].replaceAll("\\R", ""))); // chuva
                     retorno = "";
                     
                     controle.salvarNovaMedida(registro);
-//                    registroDAO.registrar(registro);
                     System.out.println(String.join(",", registro));
                     registro.clear();
                     
