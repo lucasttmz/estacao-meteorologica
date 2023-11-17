@@ -1,8 +1,3 @@
-const chuvaForte = 100;
-const chuvaLeve = 500;
-const diaNublado = 700;
-const diaEnsolarado = 1000;
-
 let graficoTemp;
 let graficoUmi;
 
@@ -38,7 +33,6 @@ const conectarWebSocket = () => {
   let qtdDados = 0;
 
   if (suportado) {
-    socket.onopen = async () => console.log("WebSocket conectado!");
     socket.onmessage = async (event) => {
       let medidas = JSON.parse(event.data);
       graficoTemp = PF("gtemp");
@@ -50,7 +44,6 @@ const conectarWebSocket = () => {
       }
       adicionarMedidas(medidas);
     };
-    socket.onclose = async () => console.log("WebSocket desconectado...");
   } else {
     alert("WebSocket não é suportado pelo seu navegador!");
   }

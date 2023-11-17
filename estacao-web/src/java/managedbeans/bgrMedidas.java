@@ -3,7 +3,7 @@ package managedbeans;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import modelo.Controle;
 import modelo.MedidaDiaria;
@@ -12,7 +12,7 @@ import modelo.MedidaDiaria;
  * Bean responsável por mostrar as medidas passadas salvas no banco de dados.
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class bgrMedidas implements Serializable {
 
     private List<MedidaDiaria> historicoDeMedidas;
